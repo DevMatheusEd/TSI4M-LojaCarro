@@ -25,7 +25,7 @@ public class CarroController {
 
     // Salvar carro (corrigido para POST)
     @PostMapping("salvar")
-    public ResponseEntity<Carro> salvarCarro(@RequestBody Carro c) {
+    public ResponseEntity<Carro> salvarCarro(@ModelAttribute Carro c) {
         Carro savedCarro = carroService.save(c);
         return ResponseEntity.ok(savedCarro);
     }
@@ -66,8 +66,8 @@ public class CarroController {
     }
 
     @PostMapping(value = "/deleteCarro", consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> deletarCarroPorModelo(@RequestBody String modelo) {
-        Carro carro = carroService.deleteByModelo(modelo.trim());
+    public ResponseEntity<String> deletarCarroPorModelo(@RequestParam Long id) {
+        Carro carro = carroService.deleteById(id);
         return ResponseEntity.ok("Carro deletado: " + carro.getModelo());
     }
 

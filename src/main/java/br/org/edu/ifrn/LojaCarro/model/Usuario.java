@@ -15,4 +15,5 @@ public class Usuario {
     String nome;
     String cargo;
     double salario;
+    String senha;
 }

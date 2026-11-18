@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Salvar Carro</title>
+</head>
+<body>
+<h1>Cadastrar carro</h1>
+<form action="http://localhost:8080/carro/salvar" method="POST">
+
+    <label>Modelo:</label>
+    <input type="text" id="modelo" name="modelo"> <br>
+    <label>Preço:</label>
+    <input type="number" name="preco"> <br>
+    <label>Ano:</label>
+    <input type="number" name="ano"> <br>
+    <button type="submit">Salvar</button>
+</form>
+
+<h1>Listar carro</h1>
+
+<a href="carro/listarCarros" target="_blank">Listar Carros</a>
+
+<h1>Atualizar Carro</h1>
+<form action="http://localhost:8080/carro/updateCarro" method="POST">
+    ID: <input type="number" name="id"><br>
+    Modelo: <input type="text" name="modelo"><br>
+    Preço: <input type="number" name="preco"><br>
+    Ano: <input type="number" name="ano">
+    <input type="submit" value="Atualizar">
+</form>
+
+<h1>Deletar</h1>
+<form action="https://localhost:8080/carro/deleteCarro" method="POST">
+    ID: <input type="number" name="id">
+    <input type="submit" value="Deletar">    
+</form>
+</body>
+</html>

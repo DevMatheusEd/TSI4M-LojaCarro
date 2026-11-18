@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Carros</title>
+</head>
+<body>
+
+<h1>Lista de Carros</h1>
+
+<button onclick="buscarCarros()">Carregar Carros</button>
+<br><br>
+
+<ul id="resultado"></ul>
+
+<script>
+    function buscarCarros() {
+        fetch('http://localhost:8080/carro/listarCarros')
+            .then(response => response.json())
+            .then(carros => {
+                const lista = document.getElementById('resultado');
+                lista.innerHTML = '';
+
+                carros.forEach(carro => {
+                    const item = document.createElement('li');
+                    item.textContent = `ID: ${carro.id} | Modelo: ${carro.modelo} | Ano: ${carro.ano} | Preço: R$ ${carro.preco}`;
+                    lista.appendChild(item);
+                });
+            })
+            .catch(error => alert('Erro ao buscar carros. O Spring Boot está rodando?'));
+    }
+</script>
+
+</body>
+</html>

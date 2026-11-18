@@ -37,4 +37,13 @@ public class UsuarioService {
     public Usuario findById(Long id) {
         return usuarioRepository.findById(id).get();
     }
+
+    public Usuario buscarPorNome(String nome) {
+        for (Usuario u : usuarioRepository.findAll()) {
+            if (u.getNome() != null && u.getNome().equals(nome)) {
+                return u;
+            }
+        }
+        return null;
+    }
 }
