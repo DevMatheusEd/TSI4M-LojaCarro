@@ -2,38 +2,51 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Salvar Carro</title>
+    <title>CRUD Carro</title>
 </head>
 <body>
-<h1>Cadastrar carro</h1>
-<form action="http://localhost:8080/carro/salvar" method="POST">
 
-    <label>Modelo:</label>
-    <input type="text" id="modelo" name="modelo"> <br>
-    <label>Preço:</label>
-    <input type="number" name="preco"> <br>
-    <label>Ano:</label>
-    <input type="number" name="ano"> <br>
+<a href="/usuario/logout">Sair</a>
+
+<h1>Cadastrar carro</h1>
+<form action="/carro/salvar" method="POST">
+    Modelo: <input type="text" name="modelo" required><br>
+    Preço: <input type="number" step="0.01" name="preco" required><br>
+    Ano: <input type="number" name="ano" required><br>
     <button type="submit">Salvar</button>
 </form>
 
-<h1>Listar carro</h1>
+<h1>Listar carros</h1>
+<a href="/carro/listarCarros" target="_blank" rel="noopener noreferrer">Listar Carros</a>
 
-<a href="carro/listarCarros" target="_blank">Listar Carros</a>
-
-<h1>Atualizar Carro</h1>
-<form action="http://localhost:8080/carro/updateCarro" method="POST">
-    ID: <input type="number" name="id"><br>
-    Modelo: <input type="text" name="modelo"><br>
-    Preço: <input type="number" name="preco"><br>
-    Ano: <input type="number" name="ano">
-    <input type="submit" value="Atualizar">
+<h1>Buscar carro por ID</h1>
+<form action="/carro/buscarPorId" method="GET" target="_blank" rel="noopener noreferrer">
+    ID: <input type="number" name="id" required>
+    <button type="submit">Buscar</button>
 </form>
 
-<h1>Deletar</h1>
-<form action="https://localhost:8080/carro/deleteCarro" method="POST">
-    ID: <input type="number" name="id">
-    <input type="submit" value="Deletar">    
+<h1>Atualizar carro</h1>
+<form action="/carro/atualizar" method="POST">
+    ID: <input type="number" name="id" required><br>
+    Modelo: <input type="text" name="modelo" required><br>
+    Preço: <input type="number" step="0.01" name="preco" required><br>
+    Ano: <input type="number" name="ano" required><br>
+    <button type="submit">Atualizar</button>
 </form>
+
+<h1>Deletar carro</h1>
+<form action="/carro/deletar" method="POST"
+      onsubmit="return confirm('Tem certeza que deseja deletar o carro com este ID?');">
+    ID: <input type="number" name="id" required>
+    <button type="submit">Deletar</button>
+</form>
+
+<script>
+    if (new URLSearchParams(window.location.search).get("deletado") === "1") {
+        alert("Carro deletado com sucesso!");
+        window.history.replaceState({}, "", "/carro.html");
+    }
+</script>
+
 </body>
 </html>
